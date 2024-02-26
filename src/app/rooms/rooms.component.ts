@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Room } from './rooms';
 
 @Component({
   selector: 'app-rooms',
@@ -12,6 +13,12 @@ export class RoomsComponent implements OnInit {
   noOfRooms: number = 10;
 
   hideRooms: boolean = false;
+
+  rooms: Room = {
+    totalRooms: 20,
+    availableRooms: 8,
+    bookedRooms: 12
+  };
 
   constructor() { }
 

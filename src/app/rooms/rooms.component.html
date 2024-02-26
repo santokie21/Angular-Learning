@@ -4,4 +4,6 @@
   <div [innerText]="noOfRooms"></div>
 </div>
 
+<div *ngIf="rooms.availableRooms > 0">Room List</div>
+
 <button (click)="toggle()">toggle</button>

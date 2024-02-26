@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomsComponent implements OnInit {
 
+  hotelName: string = "The Grand Hotel";
+
+  noOfRooms: number = 10;
+
+  hideRooms: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggle() {
+    this.hideRooms = !this.hideRooms;
   }
 
 }

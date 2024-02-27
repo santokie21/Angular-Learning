@@ -8,7 +8,7 @@
       display: 'inline-block',
       padding: '10px'
     }"
-    [innerText]="noOfRooms"
+    [innerText]="'TS'"
   ></div>
 </div>
 
@@ -16,10 +16,12 @@
 
 <!-- {{ rooms?.availableRooms ?? "No Rooms" }}   -->
 
+<!-- {{ roomList | json }} -->
+
 <div *ngIf="rooms.availableRooms > 0">
-  Room List
+  <h2>Available Rooms</h2>
   <table>
-    <tr>
+    <tr [ngStyle]="{ background: '#4a2f18', color: 'white' }">
       <th>Index</th>
       <th>Even/Odd</th>
       <th>Room Number</th>
@@ -28,6 +30,7 @@
       <th>Room Amenities</th>
       <th>Check-in Ti me</th>
       <th>Check-out Time</th>
+      <th>Rating</th>
     </tr>
     <tr
       [ngClass]="e ? 'even' : 'odd'"
@@ -36,11 +39,12 @@
       <td>{{ i }}</td>
       <td>{{ e ? "Even" : "Odd" }}</td>
       <td>{{ room.roomNumber }}</td>
-      <td>{{ room.roomType }}</td>
-      <td>{{ room.price }}</td>
-      <td>{{ room.amenities }}</td>
-      <td>{{ room.checkInTime }}</td>
-      <td>{{ room.checkOutTime }}</td>
+      <td>{{ room.roomType | uppercase }}</td>
+      <td>{{ room.price | currency : "INR" }}</td>
+      <td>{{ room.amenities | lowercase }}</td>
+      <td>{{ room.checkInTime | date : "short" }}</td>
+      <td>{{ room.checkOutTime | date : "medium" }}</td>
+      <td>{{ room.rating | number : ".2-5" }}</td>
     </tr>
   </table>
 </div>

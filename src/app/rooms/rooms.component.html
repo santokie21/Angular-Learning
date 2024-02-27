@@ -1,17 +1,27 @@
 <h1>welcome to {{ hotelName }}</h1>
 <div [hidden]="hideRooms">
   Number of rooms:
-  <div [innerText]="noOfRooms"></div>
+  <div
+    [ngStyle]="{
+      background: 'steelblue',
+      color: 'white',
+      display: 'inline-block',
+      padding: '10px'
+    }"
+    [innerText]="noOfRooms"
+  ></div>
 </div>
 
 <!---->
 
-{{ rooms?.availableRooms ?? "No Rooms" }}
+<!-- {{ rooms?.availableRooms ?? "No Rooms" }}   -->
 
 <div *ngIf="rooms.availableRooms > 0">
   Room List
   <table>
     <tr>
+      <th>Index</th>
+      <th>Even/Odd</th>
       <th>Room Number</th>
       <th>Room Type</th>
       <th>Room Price</th>
@@ -19,7 +29,12 @@
       <th>Check-in Ti me</th>
       <th>Check-out Time</th>
     </tr>
-    <tr *ngFor="let room of roomList">
+    <tr
+      [ngClass]="e ? 'even' : 'odd'"
+      *ngFor="let room of roomList; let e = even; let o = odd; let i = index"
+    >
+      <td>{{ i }}</td>
+      <td>{{ e ? "Even" : "Odd" }}</td>
       <td>{{ room.roomNumber }}</td>
       <td>{{ room.roomType }}</td>
       <td>{{ room.price }}</td>

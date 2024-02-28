@@ -20,6 +20,8 @@ export class RoomsComponent implements OnInit {
     bookedRooms: 12
   };
 
+  selectedRoom!: RoomList;
+
   roomList: RoomList[] = [];
 
   constructor() { }
@@ -63,4 +65,21 @@ export class RoomsComponent implements OnInit {
     this.hideRooms = !this.hideRooms;
   }
 
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room;
+    console.log(room);
+  }
+
+  addRoom() {
+    this.roomList.push({
+      roomNumber: 104,
+      roomType: "Standard",
+      amenities: "TV, WiFi, Breakfast",
+      price: 2500,
+      photos: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6SIyWC7gKJIM_rPMXS-LbY5X2V4C8zXXfqw&usqp=CAU",
+      checkInTime: new Date('2024-01-30T18:00:17'),
+      checkOutTime: new Date('2024-01-31T08:16:48'),
+      rating: 3.8
+    });
+  }
 }

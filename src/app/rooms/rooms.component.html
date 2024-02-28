@@ -20,7 +20,7 @@
 
 <div *ngIf="rooms.availableRooms > 0">
   <h2>Available Rooms</h2>
-  <table>
+  <table class="table table-striped">
     <tr [ngStyle]="{ background: '#4a2f18', color: 'white' }">
       <th>Index</th>
       <th>Even/Odd</th>
@@ -44,7 +44,7 @@
       <td>{{ room.amenities | lowercase }}</td>
       <td>{{ room.checkInTime | date : "short" }}</td>
       <td>{{ room.checkOutTime | date : "medium" }}</td>
-      <td>{{ room.rating | number : ".2-5" }}</td>
+      <td>{{ room.rating | number : ".2-5" : "en-us" }}</td>
     </tr>
   </table>
 </div>

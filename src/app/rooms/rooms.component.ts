@@ -20,11 +20,11 @@ export class RoomsComponent implements OnInit {
     bookedRooms: 12
   };
 
+  title: string = "Rooms List";
+
   selectedRoom!: RoomList;
 
   roomList: RoomList[] = [];
-
-  title: string = "Hotel App";
 
   constructor() { }
 
@@ -65,11 +65,11 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+    this.title = "Rooms";
   }
 
   selectRoom(room: RoomList) {
     this.selectedRoom = room;
-    console.log(room);
   }
 
   addRoom() {

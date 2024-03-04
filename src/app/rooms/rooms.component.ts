@@ -1,4 +1,5 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -6,7 +7,8 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-export class RoomsComponent implements OnInit, DoCheck {
+
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
   hotelName: string = "The Grand Hotel";
 
@@ -26,14 +28,16 @@ export class RoomsComponent implements OnInit, DoCheck {
 
   roomList: RoomList[] = [];
 
+  // @ViewChild(HeaderComponent, { static: true }) headerComponent!: HeaderComponent;
+
+  @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
+
   constructor() { }
 
-  ngDoCheck(): void {
-    console.log("On changes is called");
-    ;
-  }
-
   ngOnInit(): void {
+    // console.log(this.headerComponent);
+
+
     this.roomList = [
       {
         roomNumber: 101,
@@ -66,6 +70,22 @@ export class RoomsComponent implements OnInit, DoCheck {
         rating: 5
       }
     ];
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  ngAfterViewChecked(): void {
+    // this.headerChildrenComponent.last.title = "Rooms View";
+    console.log(this.headerChildrenComponent.last);
+    // this.headerChildrenComponent.get(0).title = "First Title";
+    // this.headerComponent.title = "Rooms View";
+
+  }
+
+  ngDoCheck(): void {
+    console.log("On changes is called");
+    ;
   }
 
   toggle() {

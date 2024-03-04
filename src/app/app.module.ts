@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { HeaderComponent } from './header/header.component';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
     RoomsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,

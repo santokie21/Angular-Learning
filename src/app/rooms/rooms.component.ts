@@ -24,6 +24,8 @@ export class RoomsComponent implements OnInit {
 
   roomList: RoomList[] = [];
 
+  title: string = "Hotel App";
+
   constructor() { }
 
   ngOnInit(): void {
@@ -71,7 +73,7 @@ export class RoomsComponent implements OnInit {
   }
 
   addRoom() {
-    this.roomList.push({
+    const add: RoomList = {
       roomNumber: 104,
       roomType: "Standard",
       amenities: "TV, WiFi, Breakfast",
@@ -80,6 +82,8 @@ export class RoomsComponent implements OnInit {
       checkInTime: new Date('2024-01-30T18:00:17'),
       checkOutTime: new Date('2024-01-31T08:16:48'),
       rating: 3.8
-    });
+    };
+    // this.roomList.push(add);
+    this.roomList = [...this.roomList, add];
   }
 }

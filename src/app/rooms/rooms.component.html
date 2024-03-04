@@ -24,11 +24,12 @@
 <div *ngIf="rooms.availableRooms > 0">
   <app-rooms-list
     [rooms]="roomList"
+    [title]="title"
     (selectedRoom)="selectRoom($event)"
   ></app-rooms-list>
 </div>
 <div>
-  <button (click)="addRoom()" class="btn btn-success">Add Room</button>
+  <button (click)="addRoom()" class="btn btn-danger">Add Room</button>
 </div>
 <br />
 <br />

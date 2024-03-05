@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit, QueryList, SkipSelf, ViewChildren } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { RoomService } from './../services/rooms.service';
 import { Room, RoomList } from './rooms';
@@ -33,7 +33,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
-  constructor(private roomService: RoomService) { }
+  constructor(@SkipSelf() private roomService: RoomService) { }
 
   ngOnInit(): void {
     // console.log(this.headerComponent);
@@ -45,14 +45,14 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   ngAfterViewChecked(): void {
     // this.headerChildrenComponent.last.title = "Rooms View";
-    console.log(this.headerChildrenComponent.last);
+    // console.log(this.headerChildrenComponent.last);
     // this.headerChildrenComponent.get(0).title = "First Title";
     // this.headerComponent.title = "Rooms View";
 
   }
 
   ngDoCheck(): void {
-    console.log("On changes is called");
+    // console.log("On changes is called");
     ;
   }
 

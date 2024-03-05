@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../services/rooms.service';
 
 @Component({
   selector: 'app-header',

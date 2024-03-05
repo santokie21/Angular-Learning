@@ -16,7 +16,7 @@
 
 <button (click)="toggle()" class="btn btn-info">toggle</button>
 
-<div *ngIf="rooms.availableRooms > 0">
+<div *ngIf="hideRooms">
   <app-rooms-list
     [rooms]="roomList"
     [title]="title"

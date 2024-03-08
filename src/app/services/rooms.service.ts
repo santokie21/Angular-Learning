@@ -20,6 +20,6 @@ export class RoomService {
   }
 
   getRooms() {
-    return this.http.get('/api/rooms');
+    return this.http.get<RoomList[]>('/api/rooms');
   }
 }

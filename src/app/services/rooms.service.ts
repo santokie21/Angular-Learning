@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConfig } from '../appConfig/appConfig.interface';
@@ -29,5 +29,15 @@ export class RoomService {
 
   editRoom(room: RoomList, id: number) {
     return this.http.put<string>(`/api/rooms/${id}`, room);
+  }
+
+  getPhotos() {
+    const req = new HttpRequest(
+      'GET', "https://jsonplaceholder.typicode.com/photos",
+      {
+        reportProgress: true
+      }
+    );
+    return this.http.request(req);
   }
 }

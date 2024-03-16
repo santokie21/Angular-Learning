@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit, QueryList, SkipSelf, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
@@ -16,7 +17,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   noOfRooms: number = 10;
 
-  hideRooms: boolean = false;
+  hideRooms: boolean = true;
 
   rooms: Room = {
     totalRooms: 20,
@@ -44,6 +45,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   constructor(@SkipSelf() private roomService: RoomService) { }
 
+  totalBytes: number = 0;
+
   ngOnInit(): void {
     this.stream.subscribe({
       next: (data) => console.log(data),
@@ -56,6 +59,26 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     // console.log(this.roomService.getRooms());
     this.roomService.getRooms().subscribe((data) => {
       this.roomList = data;
+    });
+
+    this.roomService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log('Request has been made');
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log('Response header has been received');
+          break;
+        case HttpEventType.DownloadProgress:
+          this.totalBytes += event.loaded;
+          console.log('Download in progress');
+          break;
+        case HttpEventType.Response:
+          console.log(event.body);
+          break;
+        default:
+          break;
+      }
     });
   }
 

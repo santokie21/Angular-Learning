@@ -10,7 +10,7 @@ export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
 
   availableRooms: number = 10;
 
-  @Input() rooms: RoomList[] = [];
+  @Input() rooms: RoomList[] | null = [];
 
   @Input() title: string = "";
 

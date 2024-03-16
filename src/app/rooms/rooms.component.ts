@@ -1,6 +1,6 @@
 import { HttpEventType } from '@angular/common/http';
 import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit, QueryList, SkipSelf, ViewChildren } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, map, of } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { RoomService } from './../services/rooms.service';
 import { Room, RoomList } from './rooms';
@@ -11,7 +11,7 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.css']
 })
 
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy {
 
   hotelName: string = "The Grand Hotel";
 
@@ -31,6 +31,24 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   roomList: RoomList[] = [];
 
+  subscription!: Subscription;
+
+  error$: Subject<string> = new Subject<string>();
+
+  getError$ = this.error$.asObservable();
+
+  rooms$ = this.roomService.getRooms$.pipe(
+    catchError((err) => {
+      // console.log(err);
+      this.error$.next(err.message);
+      return of([]);
+    })
+  );
+
+  roomsCount$ = this.roomService.getRooms$.pipe(
+    map((rooms) => rooms.length)
+  )
+
   stream = new Observable<string>((observer) => {
     observer.next('user1');
     observer.next('user2');
@@ -44,22 +62,30 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor(@SkipSelf() private roomService: RoomService) { }
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
   totalBytes: number = 0;
 
   ngOnInit(): void {
+
+
+
     this.stream.subscribe({
       next: (data) => console.log(data),
       error: (err) => console.log(err),
       complete: () => console.log("Completed")
     });
+
     this.stream.subscribe((data) => { console.log(data) });
     // this.roomList = this.roomService.getRooms();
     // console.log(this.headerComponent);
     // console.log(this.roomService.getRooms());
-    this.roomService.getRooms$.subscribe((data) => {
-      this.roomList = data;
-    });
+
+    // this.roomService.getRooms$.subscribe((data) => {
+    //   this.roomList = data;
+    // });
 
     this.roomService.getPhotos().subscribe((event) => {
       switch (event.type) {
@@ -142,4 +168,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       console.log(data);
     });
   }
+
+  /* ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  } */
 }

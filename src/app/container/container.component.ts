@@ -13,6 +13,7 @@ export class ContainerComponent implements OnInit, AfterContentInit {
   @ContentChild(EmployeeComponent,) employee!: EmployeeComponent;
 
   constructor(@Host() private roomService: RoomService) { }
+
   ngAfterContentInit(): void {
     // console.log(this.employee);
     this.employee.empName = "Vishwas";

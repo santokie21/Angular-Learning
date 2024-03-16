@@ -1,6 +1,6 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { AppConfig } from '../appConfig/appConfig.interface';
 import { RoomList } from '../rooms/rooms';
 import { appServiceConfig } from './../appConfig/appConfig.service';
@@ -11,6 +11,10 @@ import { appServiceConfig } from './../appConfig/appConfig.service';
 export class RoomService {
 
   rooms: RoomList[] = [];
+
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(
+    shareReplay(1)
+  );
 
   constructor(@Inject(appServiceConfig) private config: AppConfig,
     private http: HttpClient) {

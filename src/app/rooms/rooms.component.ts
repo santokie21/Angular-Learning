@@ -30,7 +30,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   roomList: RoomList[] = [];
 
-  stream = new Observable((observer) => {
+  stream = new Observable<string>((observer) => {
     observer.next('user1');
     observer.next('user2');
     observer.next('user3');
@@ -83,10 +83,28 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   selectRoom(room: RoomList) {
     this.selectedRoom = room;
   }
+  editRoomNumber: number = 4;
+
+  editRoom() {
+    const edit: RoomList = {
+      roomNumber: 3,
+      roomType: "deluxe",
+      amenities: "TV, WiFi, Breakfast",
+      price: 4500,
+      photos: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6SIyWC7gKJIM_rPMXS-LbY5X2V4C8zXXfqw&usqp=CAU",
+      checkInTime: new Date('2024-01-30T18:00:17'),
+      checkOutTime: new Date('2024-01-31T08:16:48'),
+      rating: 3.8
+    };
+
+
+    this.roomService.editRoom(edit, this.editRoomNumber).subscribe((data) => {
+      console.log(data);
+    });
+  }
 
   addRoom() {
     const add: RoomList = {
-      roomNumber: 104,
       roomType: "Standard",
       amenities: "TV, WiFi, Breakfast",
       price: 2500,
@@ -96,6 +114,9 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       rating: 3.8
     };
     // this.roomList.push(add);
-    this.roomList = [...this.roomList, add];
+    // this.roomList = [...this.roomList, add];
+    this.roomService.addRoom(add).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

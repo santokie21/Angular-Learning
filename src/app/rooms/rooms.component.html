@@ -16,6 +16,14 @@
 
 <button (click)="toggle()" class="btn btn-info">toggle</button>
 
+<button
+  (click)="editRoom()"
+  class="btn btn-primary"
+  [ngStyle]="{ marginLeft: '15px' }"
+>
+  Edit
+</button>
+
 <div *ngIf="hideRooms">
   <app-rooms-list
     [rooms]="roomList"

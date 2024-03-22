@@ -1,13 +1,13 @@
-<h1>Hello world!</h1>
+<!-- <h1>Hello world!</h1> -->
 <!-- <app-rooms></app-rooms> -->
 
 <!-- <app-employee></app-employee> -->
-<app-container>
+<!-- <app-container>
   <app-rooms> </app-rooms>
   <app-employee></app-employee>
   <h1>This is ng-Content</h1>
 </app-container>
-<h1 #name></h1>
+<h1 #name></h1> -->
 
 <!-- <div [ngSwitch]="role">
   <div *ngSwitchCase="'user'">Welcome User</div>
@@ -18,3 +18,7 @@
 <!-- <div>
   <ng-template #user></ng-template>
 </div> -->
+
+<a [routerLink]="'rooms'">Rooms</a>
+<a [routerLink]="'employee'">Employee</a>
+<router-outlet></router-outlet>

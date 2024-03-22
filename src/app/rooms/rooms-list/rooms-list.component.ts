@@ -18,7 +18,7 @@ export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() { }
   ngOnDestroy(): void {
-    console.log("On Destroy is called");
+    // console.log("On Destroy is called");
 
   }
   ngOnChanges(changes: SimpleChanges): void {

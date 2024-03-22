@@ -11,7 +11,7 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.css']
 })
 
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
   hotelName: string = "The Grand Hotel";
 
@@ -62,9 +62,9 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor(@SkipSelf() private roomService: RoomService) { }
-  ngOnDestroy(): void {
+  /* ngOnDestroy(): void {
     throw new Error('Method not implemented.');
-  }
+  } */
 
   totalBytes: number = 0;
 

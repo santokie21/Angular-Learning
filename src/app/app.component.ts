@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
 
   }
 
-  @ViewChild('name', { static: true }) name!: ElementRef;
+  // @ViewChild('name', { static: true }) name!: ElementRef;
 
   ngOnInit(): void {
     this.loggerService?.log('App component initialized');
-    this.name.nativeElement.innetText = 'Hotel Inventory App';
+    // this.name.nativeElement.innetText = 'Hotel Inventory App';
     this.localStorage.setItem('name', 'santokie');
   }
 

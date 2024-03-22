@@ -16,16 +16,6 @@
   ></div>
 </div>
 
-<button (click)="toggle()" class="btn btn-info">toggle</button>
-
-<button
-  (click)="editRoom()"
-  class="btn btn-primary"
-  [ngStyle]="{ marginLeft: '15px' }"
->
-  Edit
-</button>
-
 <div *ngIf="rooms$ | async as rooms">
   <app-rooms-list
     [rooms]="rooms"
@@ -34,7 +24,30 @@
   ></app-rooms-list>
 </div>
 <div>
-  <button (click)="addRoom()" class="btn btn-danger">Add Room</button>
+  <button (click)="toggle()" class="btn btn-info">toggle</button>
+
+  <button
+    (click)="addRoom()"
+    class="btn btn-success"
+    [ngStyle]="{ marginLeft: '15px' }"
+  >
+    Add Room
+  </button>
+
+  <button
+    (click)="editRoom()"
+    class="btn btn-primary"
+    [ngStyle]="{ marginLeft: '15px' }"
+  >
+    Edit Room
+  </button>
+  <button
+    (click)="editRoom()"
+    class="btn btn-danger"
+    [ngStyle]="{ marginLeft: '15px' }"
+  >
+    Delete Room
+  </button>
 </div>
 <br />
 <br />

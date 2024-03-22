@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, Inject, OnInit, Optional, ViewChi
 import { RoomsComponent } from './rooms/rooms.component';
 import { LocalStorageToken } from "./services/localStorage.token";
 import { LoggerService } from './services/logger.service';
+import { InitService } from './services/init.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
   role = 'admin';
 
   constructor(@Optional() private loggerService: LoggerService,
-    @Inject(LocalStorageToken) private localStorage: Storage) {
+    @Inject(LocalStorageToken) private localStorage: Storage,
+    private initservice: InitService,
+  ) {
+    console.log(initservice.config);
 
   }
 

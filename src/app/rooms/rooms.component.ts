@@ -72,13 +72,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
 
 
-    this.stream.subscribe({
+    /* this.stream.subscribe({
       next: (data) => console.log(data),
       error: (err) => console.log(err),
       complete: () => console.log("Completed")
     });
 
-    this.stream.subscribe((data) => { console.log(data) });
+    this.stream.subscribe((data) => { console.log(data) }); */
     // this.roomList = this.roomService.getRooms();
     // console.log(this.headerComponent);
     // console.log(this.roomService.getRooms());
@@ -87,7 +87,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     //   this.roomList = data;
     // });
 
-    this.roomService.getPhotos().subscribe((event) => {
+    /* this.roomService.getPhotos().subscribe((event) => {
       switch (event.type) {
         case HttpEventType.Sent:
           console.log('Request has been made');
@@ -105,7 +105,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
         default:
           break;
       }
-    });
+    }); */
   }
 
   ngAfterViewInit(): void {

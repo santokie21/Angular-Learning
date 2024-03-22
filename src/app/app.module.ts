@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +9,7 @@ import { appConfig, appServiceConfig } from './appConfig/appConfig.service';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { HeaderComponent } from './header/header.component';
+import { RequestInterceptor } from './interceptors/request.interceptor';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { RoomsComponent } from './rooms/rooms.component';
 
@@ -30,7 +31,15 @@ import { RoomsComponent } from './rooms/rooms.component';
   providers: [{
     provide: appServiceConfig,
     useValue: appConfig,
-  }],
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: RequestInterceptor,
+    multi: true
+  }
+
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

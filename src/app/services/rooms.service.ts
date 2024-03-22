@@ -1,4 +1,4 @@
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, shareReplay } from 'rxjs';
 import { AppConfig } from '../appConfig/appConfig.interface';
@@ -12,18 +12,22 @@ export class RoomService {
 
   rooms: RoomList[] = [];
 
-  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(
+
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms', {
+    // headers: new HttpHeaders({ "token": "aw5d4a3w5d135rdgz3x84" })
+  }).pipe(
     shareReplay(1)
   );
 
   constructor(@Inject(appServiceConfig) private config: AppConfig,
     private http: HttpClient) {
-    console.log(this.config.apiEndPoint);
-
-    console.log("Room Service is called");
+    // console.log(this.config.apiEndPoint);
+    0
+    // console.log("Room Service is called");
   }
 
   getRooms() {
+
     return this.http.get<RoomList[]>('/api/rooms');
   }
 

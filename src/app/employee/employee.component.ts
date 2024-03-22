@@ -9,7 +9,7 @@ import { RoomService } from '../services/rooms.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  empName!: string;
+  empName: string = "Santokie";
 
   constructor(private eoomService: RoomService) { }
 

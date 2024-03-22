@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rooms-booking',
@@ -12,8 +13,14 @@ export class RoomsBookingComponent implements OnInit {
 
   id!: number;
 
+  id$: Observable<number> = this.router.params.pipe(map(params => params['id']));
+
   ngOnInit(): void {
-    this.router.params.subscribe((params) => this.id = parseInt(params['id']));
+    // this.id = this.router.snapshot.params['id'];
+    /* this.router.paramMap.subscribe((params) => {
+      params.get('id');
+    }); */
+    // this.router.params.subscribe((params) => this.id = parseInt(params['id']));
     // this.router.params.subscribe((params) => this.id = params.id);
   }
 

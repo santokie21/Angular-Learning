@@ -1,0 +1,94 @@
+{{ room | json }}
+
+<form>
+  <div class="form-group">
+    <label for="roomNumber">RoomNumber</label>
+    <input
+      type="number"
+      class="form-control"
+      id="roomNumber"
+      [(ngModel)]="room.roomNumber"
+      placeholder="Enter RoomNumber"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="roomType">RoomType</label>
+    <input
+      type="text"
+      class="form-control"
+      id="roomType"
+      [(ngModel)]="room.roomType"
+      placeholder="Enter RoomType"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="amenities">Amenities</label>
+    <input
+      type="text"
+      class="form-control"
+      id="amenities"
+      [(ngModel)]="room.amenities"
+      placeholder="Enter Amenities"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input
+      type="number"
+      class="form-control"
+      id="price"
+      [(ngModel)]="room.price"
+      placeholder="Enter Price"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="photos">Photos</label>
+    <input
+      type="text"
+      class="form-control"
+      id="photos"
+      [(ngModel)]="room.photos"
+      placeholder="Photos (Provide Link)"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="checkInTime">Check-in Time:</label>
+    <input
+      type="datetime-local"
+      class="form-control"
+      id="checkInTime"
+      [(ngModel)]="room.checkInTime"
+      placeholder="Enter CheckInTime"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="checkOutTime">Check-out Time</label>
+    <input
+      type="datetime-local"
+      class="form-control"
+      id="checkOutTime"
+      [(ngModel)]="room.checkOutTime"
+      placeholder="Enter checkOutTime"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="rating">Rating</label>
+    <input
+      type="number"
+      class="form-control"
+      id="rating"
+      [(ngModel)]="room.rating"
+      placeholder="Enter Rating"
+    />
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
